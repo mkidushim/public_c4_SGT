@@ -5,7 +5,7 @@ var student_object = {
     course: null,
     grade: null
 };
-
+var first_click = true;
 var low_array = [];
 var high_array = [];
 
@@ -31,7 +31,7 @@ function show_student() {
     
 
 
-
+ footer();
 
     for (var i = 0; i < student_array.length; i++) {
         var output_stud = $('<div>', {
@@ -59,6 +59,9 @@ function show_student() {
             var index = $(this).attr('data_index');
             $(this).remove();
             student_array.splice(index,1);
+            high_low_grade();
+            highlight_low();
+            highlight_high();
         })
         $('#student_object').append(output_stud);
         $(output_stud).append(name_o, course_o, grade_o, delete_o);
@@ -131,7 +134,13 @@ function highlight_high (){
     for (var i = 0; i < high_array.length; i++) {
     $('.st_grade').eq(high_array[i]).addClass('high')
     console.log('high')
-    $('.footer').append('<p class="col-sm-3 col-md-3">Pink = Highest Grade in the class.</p>')
-         .append('<p class="col-sm-3 col-md-3">Blue = Lowest Grade in the class.</p>')
+   
+   
     }
+
+
+}
+function footer () {
+     $('.footer').append('<p class="col-sm-3 col-md-3">Pink = Highest Grade in the class.</p>')
+         .append('<p class="col-sm-3 col-md-3">Blue = Lowest Grade in the class.</p>')
 }
