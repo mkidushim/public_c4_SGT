@@ -51,14 +51,14 @@ function show_student() {
             text: student_array[i].s_grade
         });
         var delete_o = $('<button>', {
-            class: "list-group-item",
+            class: "delete list-group-item",
             type: "button",
             text: "delete"
         });
-        output_stud.click(function (){
+        output_stud.on('click',function (){
             var index = $(this).attr('data_index');
             $(this).remove();
-            delete student_array[index];
+            student_array.splice(index,1);
         })
         $('#student_object').append(output_stud);
         $(output_stud).append(name_o, course_o, grade_o, delete_o);
