@@ -85,12 +85,17 @@ function show_student() {
 $(document).ready(function() {
     $('body').on('click', '#add_btn', function() {
         add_student();
-        
+
     });
     $('body').on('click', '#show_btn', function() {
         console.log('show button works')
 
         show_student();
+    });
+     $('body').on('click', '#update', function() {
+        console.log('update button works')
+
+        get_student_data();
     });
 
 });
@@ -182,8 +187,15 @@ function add_student_data() {
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/create/',
         success: function(response) {
-            console.log('response:2',response)
+            console.log('response:2', response)
             get_student_data();
+            for (var i = 0; i < student_array.length; i++) {
+                if (student_array[i].id > student_array[i + 1].id) {
+                    var temp = student_array[i].id;
+                    student_array[i].id = student_array[i + 1].id;
+                    student_array[i + 1] = temp
+                }
+            }
         }
     })
 }
