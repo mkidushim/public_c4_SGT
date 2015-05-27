@@ -6,10 +6,14 @@ var student_object = {
     grade: null
 };
 var first_click = true;
-var low_array = [0];
-var high_array = [0];
+var low_array_index = [];
+var high_array_index = [];
+var high_grade = -1;
+var low_grade = 101;
 var data_inputed = true;
 
+
+//^^^^ Variables ^^^^
 function add_student() {
 
         var addstudent = Object.create(student_object);
@@ -62,11 +66,9 @@ function show_student() {
         output_stud.on('click', function() {
             var index = $(this).attr('data_index');
             $(this).remove();
-            student_array.splice(index, 1);
-            high_low_grade();
-            highlight_low();
-            high_low_grade();
-            highlight_high();
+            student_array.splice(index, 1)
+            show_student()
+
         })
         $('#student_object').append(output_stud);
         $(output_stud).append(name_o, course_o, grade_o, delete_o);
@@ -74,7 +76,6 @@ function show_student() {
     }
     high_low_grade();
     highlight_high();
-    high_low_grade();
     highlight_low();
 
 
@@ -82,23 +83,7 @@ function show_student() {
 
 
 
-$(document).ready(function() {
-    $('body').on('click', '#add_btn', function() {
-        add_student();
 
-    });
-    $('body').on('click', '#show_btn', function() {
-        console.log('show button works')
-
-        show_student();
-    });
-     $('body').on('click', '#update', function() {
-        console.log('update button works')
-
-        get_student_data();
-    });
-
-});
 
 function average_grade() {
     var sum = 0;
@@ -115,18 +100,24 @@ function average_grade() {
 }
 
 function high_low_grade() {
-
-    var high_grade = parseFloat(student_array[0].grade);
-    var low_grade = parseFloat(student_array[0].grade);
+    high_array_index = [];
+    low_array_index = [];
+    high_grade = parseFloat(student_array[0].grade);
+    low_grade = parseFloat(student_array[0].grade);
     for (var i = 0; i < student_array.length; i++) {
-
-        if (parseFloat(student_array[i].grade) >= high_grade) {
-            high_array = [i];
+        if (student_array[i].grade == high_grade) {
+            high_array_index.push(i);
+        }
+        if (parseFloat(student_array[i].grade) > high_grade) {
+            high_array_index = [i];
             high_grade = student_array[i].grade;
         }
+        if (student_array[i].grade == low_grade) {
+            low_array_index.push(i);
+        }
 
-        if (parseFloat(student_array[i].grade) <= low_grade) {
-            low_array = [i];
+        if (parseFloat(student_array[i].grade) < low_grade) {
+            low_array_index = [i];
             low_grade = student_array[i].grade;
         }
     }
@@ -134,18 +125,18 @@ function high_low_grade() {
 
 function highlight_low() {
 
-    for (var i = 0; i < low_array.length; i++) {
+    for (var i = 0; i < low_array_index.length; i++) {
 
-        $('.st_grade').eq(low_array[i]).addClass('low')
-        console.log('low_array:', low_array)
+        $('.st_grade').eq(low_array_index[i]).addClass('low')
+        console.log('low_array:', low_array_index)
     }
 }
 
 function highlight_high() {
-    for (var i = 0; i < high_array.length; i++) {
+    for (var i = 0; i < high_array_index.length; i++) {
 
-        $('.st_grade').eq(high_array[i]).addClass('high')
-        console.log('high_array:', high_array)
+        $('.st_grade').eq(high_array_index[i]).addClass('high')
+        console.log('high_array:', high_array_index)
 
 
     }
@@ -165,9 +156,10 @@ function get_student_data() {
         url: 'http://s-apis.learningfuze.com/sgt/get',
         success: function(response) {
             result = response;
-            console.log('Response1: ', result)
+            console.log('Students added from server', result)
             student_array = [];
             student_array = student_array.concat(result.data)
+            console.log(student_array)
 
         }
 
@@ -187,15 +179,47 @@ function add_student_data() {
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/create/',
         success: function(response) {
-            console.log('response:2', response)
-            get_student_data();
-            for (var i = 0; i < student_array.length; i++) {
-                if (student_array[i].id > student_array[i + 1].id) {
-                    var temp = student_array[i].id;
-                    student_array[i].id = student_array[i + 1].id;
-                    student_array[i + 1] = temp
-                }
+            if (response) {
+                console.log('student sent to server', student_array[student_array.length-1])
+                get_student_data();
             }
         }
     })
 }
+
+
+function sort_grades() {
+    for (var i = 0; i < student_array.length; i++) {
+        if (student_array[i].grade > student_array[i+1]['grade']) {
+            return
+        } else {
+            var temp = student_array[i].grade;
+            student_array[i].grade = student_array[i+1].grade;
+            student_array[i+1] = temp;
+            console.log(student_array)
+        }
+    }
+
+}
+//^^^^ Functions ^^^^
+$(document).ready(function() {
+    $('body').on('click', '#add_btn', function() {
+        add_student();
+
+    });
+    $('body').on('click', '#show_btn', function() {
+        console.log('show button works')
+
+        show_student();
+    });
+    $('body').on('click', '#update', function() {
+        console.log('update button works')
+
+        get_student_data();
+    });
+    $('body').on('click', '#sort', function (){
+        sort_grades();
+    })
+    setInterval('get_student_data()', 5000);
+});
+//document.ready

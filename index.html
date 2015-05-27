@@ -21,19 +21,20 @@
 </head>
 
 <body>
-    <section id="student_info">
-        <div class="student_container">
-            <span class="col-xs-6 col-md-6">Student Name</span>
+    <section id="student_info" class='container'>
+        <div class="student_container row">
+            <span class="col-xs-6 col-sm-6 col-md-6">Student Name</span>
             <input type="text" name="student_name" id="student_name" class="col-xs-6 col-md-6" placeholder="Student Name">
-            <span class="col-xs-6 col-md-6">Student Course</span>
+            <span class="col-xs-6 col-sm-6 col-md-6">Student Course</span>
             <input type="text" name="student_course" id="student_course" class="col-xs-6 col-md-6" placeholder="Student Course ">
-            <span class="col-xs-6 col-md-6">Student Grade</span>
-            <input type="text" name="student_grade" id="student_grade" class="col-xs-6 col-md-6" placeholder="Student Grade (0-100)">
-            <span id="grade_average" class="col-xs-6 col-md-6">Average</span>
-            <input id="student_display" class="col-xs-6 col-md-6" readonly></input>
+            <span class="col-xs-6 col-sm-6 col-md-6">Student Grade</span>
+            <input type="text" name="student_grade" id="student_grade" class="col-xs-6 col-sm-6 col-md-6" placeholder="Student Grade (0-100)">
+            <span id="grade_average" class="col-xs-6 col-sm-6 col-md-6">Average</span>
+            <input id="student_display" class="col-xs-6 col-sm-6 col-md-6" readonly></input>
             <button type="button" id='add_btn' class="s_add col-lg-2 col-md-2 col-xs-2 col-sm-2">Add Student</button>
             <button id='show_btn' type="button" class="s_show col-md-2 col-xs-2 col-sm-2">Show Students</button>
             <button id="update" type="button" class="col-md-2 col-xs-2 col-sm-2">Update</button>  
+            <button id="sort" type="button" class="col-md-2 col-xs-2 col-sm-2">Grades</button>  
         </div>
     </section>
     <section id="student_input">
