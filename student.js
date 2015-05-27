@@ -20,7 +20,7 @@ function add_student() {
         //show_student();
         console.log(student_object);
         console.log(student_array);
-
+        add_student_data();
 
         //v--------KC Added the Average function to this button
 
@@ -85,10 +85,7 @@ function show_student() {
 $(document).ready(function() {
     $('body').on('click', '#add_btn', function() {
         add_student();
-        if (data_inputed) {
-            get_student_data();
-            data_inputed = false;
-        }
+        
     });
     $('body').on('click', '#show_btn', function() {
         console.log('show button works')
@@ -117,12 +114,12 @@ function high_low_grade() {
     var high_grade = parseFloat(student_array[0].grade);
     var low_grade = parseFloat(student_array[0].grade);
     for (var i = 0; i < student_array.length; i++) {
-        
+
         if (parseFloat(student_array[i].grade) >= high_grade) {
             high_array = [i];
             high_grade = student_array[i].grade;
         }
-    
+
         if (parseFloat(student_array[i].grade) <= low_grade) {
             low_array = [i];
             low_grade = student_array[i].grade;
@@ -163,9 +160,30 @@ function get_student_data() {
         url: 'http://s-apis.learningfuze.com/sgt/get',
         success: function(response) {
             result = response;
-            console.log('Response: ', result)
+            console.log('Response1: ', result)
+            student_array = [];
             student_array = student_array.concat(result.data)
+
         }
 
+    })
+}
+
+function add_student_data() {
+    $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+            name: student_array[0].name,
+            course: student_array[0].course,
+            grade: student_array[0].grade
+        },
+        cache: false,
+        crossDomain: true,
+        url: 'http://s-apis.learningfuze.com/sgt/create/',
+        success: function(response) {
+            console.log('response:2',response)
+            get_student_data();
+        }
     })
 }
