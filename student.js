@@ -180,7 +180,7 @@ function add_student_data() {
         url: 'http://s-apis.learningfuze.com/sgt/create/',
         success: function(response) {
             if (response) {
-                console.log('student sent to server', student_array[student_array.length-1])
+                console.log('student sent to server', student_array[student_array.length - 1])
                 get_student_data();
             }
         }
@@ -189,19 +189,48 @@ function add_student_data() {
 
 
 function sort_grades() {
-    for (var i = 0; i < student_array.length; i++) {
-        if (student_array[i].grade > student_array[i+1]['grade']) {
-            return
-        } else {
-            var temp = student_array[i].grade;
-            student_array[i].grade = student_array[i+1].grade;
-            student_array[i+1] = temp;
-            console.log(student_array)
+    console.log('sort grades function:', student_array);
+    for (var i = 1; i < student_array.length; i++) {
+
+        if (student_array[i].grade < student_array[i - 1].grade) {
+            var less = student_array[i];
+            student_array[i] = student_array[i - 1];
+            student_array[i - 1] = less;
+            i = 0;
         }
     }
 
 }
-//^^^^ Functions ^^^^
+
+
+function sort_course() {
+    console.log('sort course function:', student_array);
+    for (var i = 1; i < student_array.length; i++) {
+
+        if (student_array[i].course < student_array[i - 1].course) {
+            var less = student_array[i];
+            student_array[i] = student_array[i - 1];
+            student_array[i - 1] = less;
+            i = 0;
+        }
+    }
+
+}
+
+function sort_names() {
+        console.log('sort names function:', student_array);
+        for (var i = 1; i < student_array.length; i++) {
+
+            if (student_array[i].name < student_array[i - 1].name) {
+                var less = student_array[i];
+                student_array[i] = student_array[i - 1];
+                student_array[i - 1] = less;
+                i = 0;
+            }
+        }
+
+    }
+    //^^^^ Functions ^^^^
 $(document).ready(function() {
     $('body').on('click', '#add_btn', function() {
         add_student();
@@ -209,7 +238,7 @@ $(document).ready(function() {
     });
     $('body').on('click', '#show_btn', function() {
         console.log('show button works')
-
+    $('#student_object').html('');
         show_student();
     });
     $('body').on('click', '#update', function() {
@@ -217,9 +246,32 @@ $(document).ready(function() {
 
         get_student_data();
     });
-    $('body').on('click', '#sort', function (){
+    $('body').on('click', '#sort_grade', function() {
+        $('#student_object').html('');
         sort_grades();
-    })
-    setInterval('get_student_data()', 5000);
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+    });
+    $('body').on('click', '#sort_course', function() {
+        $('#student_object').html('');
+        sort_course();
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+    });
+    $('body').on('click', '#sort_name', function() {
+        $('#student_object').html('');
+        sort_names();
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+        
+
+    });
+    //setInterval('get_student_data()', 5000);
 });
-//document.ready
+//^^document.ready^^
