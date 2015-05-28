@@ -11,6 +11,8 @@ var high_array_index = [];
 var high_grade = -1;
 var low_grade = 101;
 var data_inputed = true;
+var course_resp = $('#student_course').val();
+var course_array = [];
 
 
 //^^^^ Variables ^^^^
@@ -37,7 +39,7 @@ function show_student() {
 
 
     average_grade();
-    
+
 
     for (var i = 0; i < student_array.length; i++) {
 
@@ -218,19 +220,59 @@ function sort_course() {
 }
 
 function sort_names() {
-        console.log('sort names function:', student_array);
-        for (var i = 1; i < student_array.length; i++) {
+    console.log('sort names function:', student_array);
+    for (var i = 1; i < student_array.length; i++) {
 
-            if (student_array[i].name < student_array[i - 1].name) {
-                var less = student_array[i];
-                student_array[i] = student_array[i - 1];
-                student_array[i - 1] = less;
-                i = 0;
+        if (student_array[i].name < student_array[i - 1].name) {
+            var less = student_array[i];
+            student_array[i] = student_array[i - 1];
+            student_array[i - 1] = less;
+            i = 0;
+        }
+    }
+
+}
+
+function get_server() {
+    $.ajax({
+        dataType: 'json',
+        method: 'GET',
+        cache: false,
+        crossDomain: true,
+        url: 'http://s-apis.learningfuze.com/sgt/courses',
+        success: function(response) {
+            course_resp = $('#student_course').val();
+            console.log('get_server():', response.data[0].course)
+            console.log('input', course_resp.length)
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].course.substr(0, course_resp.length) == course_resp) {
+                    course_array.push(response.data[i].course)
+                }
+            }
+            for (var i = 0; i < course_array-1; i++) {
+                        var div = $('<div>', {
+                            class: course_sugg,
+                        });
+                    var ul = $('<ul>', {
+                        class: 'list-group'
+                    });
+                    var input = $('<li>', {
+                        class: 'list-group-item',
+                        text: course_array[i]
+                    });
+                
+                $('#student_course').append(div);
+                $(div).append(ul);
+                $(ul).append(input);
+
             }
         }
 
-    }
-    //^^^^ Functions ^^^^
+    })
+
+}
+
+//^^^^ Functions ^^^^
 $(document).ready(function() {
     footer();
     $('body').on('click', '#add_btn', function() {
@@ -273,7 +315,7 @@ $(document).ready(function() {
 
 
     });
-$('body').on('touchstart', '#add_btn', function() {
+    $('body').on('touchstart', '#add_btn', function() {
         add_student();
 
     });
@@ -313,7 +355,12 @@ $('body').on('touchstart', '#add_btn', function() {
 
 
     });
-   
-    setInterval('get_student_data()', 5000);
+    $("body").keyup(function(event) {
+        get_server();
+
+        console.log("Key: " + event.which);
+    });
+
+    //setInterval('get_student_data()', 5000);
 });
 //^^document.ready^^
