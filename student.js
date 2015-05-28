@@ -37,7 +37,7 @@ function show_student() {
 
 
     average_grade();
-    footer();
+    
 
     for (var i = 0; i < student_array.length; i++) {
 
@@ -145,8 +145,8 @@ function highlight_high() {
 }
 
 function footer() {
-    $('.footer').append('<p class="col-sm-3 col-md-3">Pink = Highest Grade in the class.</p>')
-        .append('<p class="col-sm-3 col-md-3">Blue = Lowest Grade in the class.</p>')
+    $('.footer').append('<p class="col-sm-3 col-md-3 col-md-offset-2">Pink = Highest Grade in the class.</p>')
+        .append('<p class="col-sm-3 col-md-3 col-md-offset-2">Blue = Lowest Grade in the class.</p>')
 }
 
 
@@ -232,13 +232,14 @@ function sort_names() {
     }
     //^^^^ Functions ^^^^
 $(document).ready(function() {
+    footer();
     $('body').on('click', '#add_btn', function() {
         add_student();
 
     });
     $('body').on('click', '#show_btn', function() {
         console.log('show button works')
-    $('#student_object').html('');
+        $('#student_object').html('');
         show_student();
     });
     $('body').on('click', '#update', function() {
@@ -269,9 +270,11 @@ $(document).ready(function() {
         high_low_grade();
         highlight_high();
         highlight_low();
-        
+
 
     });
+
+   
     //setInterval('get_student_data()', 5000);
 });
 //^^document.ready^^
