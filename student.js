@@ -273,8 +273,47 @@ $(document).ready(function() {
 
 
     });
+$('body').on('touchstart', '#add_btn', function() {
+        add_student();
 
+    });
+    $('body').on('touchstart', '#show_btn', function() {
+        console.log('show button works')
+        $('#student_object').html('');
+        show_student();
+    });
+    $('body').on('touchstart', '#update', function() {
+        console.log('update button works')
+
+        get_student_data();
+    });
+    $('body').on('touchstart', '#sort_grade', function() {
+        $('#student_object').html('');
+        sort_grades();
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+    });
+    $('body').on('touchstart', '#sort_course', function() {
+        $('#student_object').html('');
+        sort_course();
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+    });
+    $('body').on('touchstart', '#sort_name', function() {
+        $('#student_object').html('');
+        sort_names();
+        show_student();
+        high_low_grade();
+        highlight_high();
+        highlight_low();
+
+
+    });
    
-    //setInterval('get_student_data()', 5000);
+    setInterval('get_student_data()', 5000);
 });
 //^^document.ready^^
