@@ -8,6 +8,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="student.js"></script>
     <style type="text/css">
+    
     .high {
         background-color: pink;
         opacity: .5;
@@ -17,20 +18,48 @@
         background-color: turquoise;
         opacity: .5;
     }
+    
+    
+    
+    .course_container {
+        position: relative;
+    }
+    
+    .list_group {
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+    }
+    
+    .list_item {
+        display: block;
+    }
+    .col-xs-6.col-sm-6{
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
     </style>
 </head>
 
 <body>
     <section id="student_info" class='container'>
         <div class="student_container row">
-            <span class="col-xs-6 col-sm-6 col-md-6">Student Name</span>
-            <input type="text" name="student_name" id="student_name" class="col-xs-6 col-md-6" placeholder="Student Name">
-            <span class="col-xs-6 col-sm-6 col-md-6">Student Course</span>
-            <input type="text" name="student_course" id="student_course" class="col-xs-6 col-md-6" placeholder="Student Course ">
-            <span class="col-xs-6 col-sm-6 col-md-6">Student Grade</span>
-            <input type="text" name="student_grade" id="student_grade" class="col-xs-6 col-sm-6 col-md-6" placeholder="Student Grade (0-100)">
-            <span id="grade_average" class="col-xs-6 col-sm-6 col-md-6">Average</span>
-            <input id="student_display" class="col-xs-6 col-sm-6 col-md-6" readonly></input>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <span>Student Name</span>
+                <input type="text" name="student_name" id="student_name" placeholder="Student Name">
+            </div>
+            <div class="student_course col-xs-6 col-sm-6 col-md-6">
+                <span>Student Course</span>
+                <input type="text" name="student_course" id="student_course" placeholder="Student Course ">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <span>Student Grade</span>
+                <input type="text" name="student_grade" id="student_grade" placeholder="Student Grade (0-100)">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <span id="grade_average">Average</span>
+                <input id="student_display" placeholder="average" readonly>
+            </div>
             <button type="button" id='add_btn' class="s_add col-lg-2 col-md-2 col-xs-4 col-sm-4">Add Student</button>
             <button id='show_btn' type="button" class="s_show col-md-2 col-xs-4 col-sm-4">Show Students</button>
             <button id="update" type="button" class="col-md-2 col-xs-4 col-sm-4">Server Update</button>

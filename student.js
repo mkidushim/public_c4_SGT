@@ -232,7 +232,9 @@ function sort_names() {
     }
 
 }
-
+function populate_input (this_div){
+    $('#student_course').val($(this_div).text());
+}
 function get_server() {
     $.ajax({
         dataType: 'json',
@@ -241,6 +243,12 @@ function get_server() {
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/courses',
         success: function(response) {
+            var div = $('<div>', {
+                class: "course_container",
+            });
+            var ul = $('<ul>', {
+                class: 'list_group'
+            });
             course_resp = $('#student_course').val();
             console.log('get_server():', response.data[0].course)
             console.log('input', course_resp.length)
@@ -249,23 +257,19 @@ function get_server() {
                     course_array.push(response.data[i].course)
                 }
             }
-            for (var i = 0; i < course_array-1; i++) {
-                        var div = $('<div>', {
-                            class: course_sugg,
-                        });
-                    var ul = $('<ul>', {
-                        class: 'list-group'
-                    });
-                    var input = $('<li>', {
-                        class: 'list-group-item',
-                        text: course_array[i]
-                    });
-                
-                $('#student_course').append(div);
-                $(div).append(ul);
+            for (var i = 0; i < 4; i++) {
+                var input = $('<li>', {
+                    class: 'list_item',
+                    text: course_array[i]
+                });
+
+
                 $(ul).append(input);
 
             }
+
+            $(div).append(ul);
+            $('.student_course').append(div);
         }
 
     })
@@ -361,6 +365,9 @@ $(document).ready(function() {
         console.log("Key: " + event.which);
     });
 
+$('.student_course').on('click', '.list_item', function(){
+    populate_input(this);
+})
     //setInterval('get_student_data()', 5000);
 });
 //^^document.ready^^
