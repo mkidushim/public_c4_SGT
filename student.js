@@ -13,7 +13,7 @@ var low_grade = 101;
 var data_inputed = true;
 var course_resp = $('#student_course').val();
 var course_array = [];
-
+var keyup_first = true;
 
 //^^^^ Variables ^^^^
 function add_student() {
@@ -243,6 +243,7 @@ function get_server() {
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/courses',
         success: function(response) {
+            course_array = [];
             var div = $('<div>', {
                 class: "course_container",
             });
@@ -360,20 +361,20 @@ $(document).ready(function() {
 
     });
     $("body").keyup(function(event) {
-        if (keyup_first) { 
-        get_server();
-        keyup_first = false;
+        if (event.which === 8) { 
+        $('.course_container').remove();
         console.log("Key: " + event.which);
+        return
         }
         else {
-            keyup_first = true;
+ get_server();
 
         }
     });
 
 $('.student_course').on('click', '.list_item', function(){
     populate_input(this);
-    get_server();
+   
 })
     //setInterval('get_student_data()', 5000);
 });
