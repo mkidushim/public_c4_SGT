@@ -360,13 +360,20 @@ $(document).ready(function() {
 
     });
     $("body").keyup(function(event) {
+        if (keyup_first) { 
         get_server();
-
+        keyup_first = false;
         console.log("Key: " + event.which);
+        }
+        else {
+            keyup_first = true;
+
+        }
     });
 
 $('.student_course').on('click', '.list_item', function(){
     populate_input(this);
+    get_server();
 })
     //setInterval('get_student_data()', 5000);
 });
