@@ -374,6 +374,7 @@ $(document).ready(function() {
 
 $('.student_course').on('click', '.list_item', function(){
     populate_input(this);
+    $('.course_container').remove();
    
 })
     //setInterval('get_student_data()', 5000);
