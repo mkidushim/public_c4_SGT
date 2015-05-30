@@ -248,7 +248,7 @@ function get_server() {
                 class: "course_container",
             });
             var ul = $('<ul>', {
-                class: 'list_group'
+                class: 'list_group text-left'
             });
             course_resp = $('#student_course').val();
             console.log('get_server():', response.data[0].course)
