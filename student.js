@@ -236,9 +236,13 @@ function populate_input (this_div){
     $('#student_course').val($(this_div).text());
 }
 function get_server() {
+    var input = $('#student_course').val();
     $.ajax({
         dataType: 'json',
         method: 'GET',
+        data: {
+            course: input,
+        },
         cache: false,
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/courses',
@@ -253,15 +257,12 @@ function get_server() {
             course_resp = $('#student_course').val();
             console.log('get_server():', response.data[0].course)
             console.log('input', course_resp.length)
-            for (var i = 0; i < response.data.length; i++) {
-                if (response.data[i].course.substr(0, course_resp.length) == course_resp) {
-                    course_array.push(response.data[i].course)
-                }
-            }
+
             for (var i = 0; i < 4; i++) {
+                console.log('get_server():', response.data[i].course)
                 var input = $('<li>', {
                     class: 'list_item',
-                    text: course_array[i]
+                    text: response.data[i].course
                 });
 
 
