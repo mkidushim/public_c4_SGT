@@ -360,7 +360,7 @@ $(document).ready(function() {
 
 
     });
-    $("body").keyup(function(event) {
+    $("#student_course").keyup(function(event) {
         if (event.which === 8) { 
         $('.course_container').remove();
         console.log("Key: " + event.which);
