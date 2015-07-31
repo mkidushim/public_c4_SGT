@@ -1,12 +1,2 @@
 # c4_SGT
-Student Grade Table
-
-
-
-## Version 0.5
-- Scope
-  - Fork your paired programming repo to your own account
-  - Complete any remaining functionality from v0.1 scope
-  - Incorporate the delete functionality developed in your <a href='https://github.com/Learning-Fuze/prototypes/tree/master/js-deletion' target='_blank'>JS deletion prototype, and incorpoate</a>
-    - Delete button should delete the element
-    - Delete button should delete the linked student object from the array
+I created a Student Grade Table that at first was just a simple way to learn how to manipulate the dom through javascript and jquery using a form.  Now it uses ajax calls to display students from the class database.  I also allow the user to be able to delete and add students to the database as well.  
