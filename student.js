@@ -18,21 +18,21 @@ var keyup_first = true;
 //^^^^ Variables ^^^^
 function add_student() {
 
-        var addstudent = Object.create(student_object);
-        addstudent.name = $('#student_name').val();
-        addstudent.course = $('#student_course').val();
-        addstudent.grade = parseFloat($('#student_grade').val());
-        student_array.push(addstudent);
-        //show_student();
-        console.log(student_object);
-        console.log(student_array);
-        add_student_data();
+    var addstudent = Object.create(student_object);
+    addstudent.name = $('#student_name').val();
+    addstudent.course = $('#student_course').val();
+    addstudent.grade = parseFloat($('#student_grade').val());
+    student_array.push(addstudent);
+    //show_student();
+    console.log(student_object);
+    console.log(student_array);
+    add_student_data();
 
-        //v--------KC Added the Average function to this button
+    //v--------KC Added the Average function to this button
 
 
-    }
-    //got the show_student button to work we can also put it inside the add_student button by removing the comment before the show_student() function
+}
+//got the show_student button to work we can also put it inside the add_student button by removing the comment before the show_student() function
 function show_student() {
 
     console.log('button worked')
@@ -49,27 +49,33 @@ function show_student() {
         });
         var name_o = $('<div>', {
             class: "st_name list-group-item",
-            text: student_array[i].name
+            text: student_array[i].name,
+            data_index: i
         });
         var course_o = $('<div>', {
             class: "st_course list-group-item",
-            text: student_array[i].course
+            text: student_array[i].course,
+            data_index: i
         });
 
         var grade_o = $('<div>', {
             class: "st_grade list-group-item",
-            text: student_array[i].grade
+            text: student_array[i].grade,
+            data_index: i
         });
         var delete_o = $('<button>', {
             class: "delete list-group-item",
             type: "button",
-            text: "delete"
+            text: "delete",
+            data_index: i
         });
-        output_stud.on('click', function() {
+        output_stud.on('click','.delete', function() {
             var index = $(this).attr('data_index');
-            $(this).remove();
+            $('[data_index= '+index+ ']').remove();
             student_array.splice(index, 1)
             show_student()
+            console.log(index);
+            console.log('index', $('[data_index= '+index+ ']'));
 
         })
         $('#student_object').append(output_stud);
@@ -232,9 +238,11 @@ function sort_names() {
     }
 
 }
-function populate_input (this_div){
+
+function populate_input(this_div) {
     $('#student_course').val($(this_div).text());
 }
+
 function get_server() {
     $.ajax({
         dataType: 'json',
@@ -361,22 +369,21 @@ $(document).ready(function() {
 
     });
     $("#student_course").keyup(function(event) {
-        if (event.which === 8) { 
-        $('.course_container').remove();
-        console.log("Key: " + event.which);
-        return
-        }
-        else {
- get_server();
+        if (event.which === 8) {
+            $('.course_container').remove();
+            console.log("Key: " + event.which);
+            return
+        } else {
+            get_server();
 
         }
     });
 
-$('.student_course').on('click', '.list_item', function(){
-    populate_input(this);
-    $('.course_container').remove();
-   
-})
-    //setInterval('get_student_data()', 5000);
+    $('.student_course').on('click', '.list_item', function() {
+            populate_input(this);
+            $('.course_container').remove();
+
+        })
+        //setInterval('get_student_data()', 5000);
 });
 //^^document.ready^^
