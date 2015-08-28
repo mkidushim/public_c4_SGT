@@ -153,8 +153,8 @@ function highlight_high() {
 }
 
 function footer() {
-    $('.footer').append('<p class="col-sm-3 col-md-3 col-md-offset-2">Pink = Highest Grade in the class.</p>')
-        .append('<p class="col-sm-3 col-md-3 col-md-offset-2">Blue = Lowest Grade in the class.</p>')
+    $('.footer').append('<p class="col-sm-3 col-md-3 col-md-offset-2 pink">Pink = Highest Grade in the class.</p>')
+        .append('<p class="col-sm-3 col-md-3 col-md-offset-2 blue">Blue = Lowest Grade in the class.</p>')
 }
 
 
@@ -168,7 +168,7 @@ function get_student_data() {
             student_array = [];
             student_array = student_array.concat(result.data)
             console.log(student_array)
-
+            show_student();
         }
 
     })

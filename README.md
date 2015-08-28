@@ -1,3 +1,3 @@
 # c4_SGT
-I created a Student Grade Table that at first was just a simple way to learn how to manipulate the dom through javascript and jquery using a form.  Now it uses ajax calls to display students from the class database.  I also allow the user to be able to delete and add students to the database as well.  
+I created a Student Grade Table that is able to retreive students from a server and add them to the DOM.  The user also has the ability to add new students and view the average for all the students being stored.   
 #Live Version: http://52.26.217.22/public_c4_SGT/
