@@ -1,13 +1,25 @@
+/*body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}*/
 .high {
     background-color: pink;
     opacity: .5;
 }
+#student_grade {
+    width: 46%;
+}
+
 
 .low {
     background-color: turquoise;
     opacity: .5;
 }
-
+#student_display {
+    width: 65%;
+   
+}
 .course_container {
     position: relative;
 }
