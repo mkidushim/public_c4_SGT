@@ -7,100 +7,37 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="student.js"></script>
-    <style type="text/css">
-    .high {
-        background-color: pink;
-        opacity: .5;
-    }
-    
-    .low {
-        background-color: turquoise;
-        opacity: .5;
-    }
-    
-    .course_container {
-        position: relative;
-    }
-    
-    @media screen and (max-width: 600px) {
-        .list_group {
-            position: absolute;
-            top: 100%;
-            z-index: 1;
-            border: 1px solid;
-            box-shadow: 10px 10px 5px #888888;
-            padding-right: 5%;
-        }
-        .display {
-            margin-bottom: 10px;
-        }
-    }
-    
-    .list_group {
-        position: absolute;
-        top: 100%;
-        z-index: 1;
-        border: 1px solid;
-        box-shadow: 10px 10px 5px #888888;
-        padding-right: 15%;
-        left: 100px;
-    }
-    
-    .col-xs-6.col-sm-6 {
-        margin-top: 20px;
-        margin-bottom: 100px;
-    }
-    
-    .list_item {
-        display: block;
-    }
-    ul.list_group {
-        color: white;
-        background-color: black;
-    }
-    li.list_item:hover {
-        
-color: black;
-background-color: white;
-
-    }
-    .footer{
-        margin-top: 20px;
-    }
-    .pink {
-        
-        border: 4px solid pink;
-    }
-    .blue {
-        border: 4px solid turquoise;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <section id="student_info" class='container'>
         <div class="student_container row">
-            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-4">
+            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-3">
                 <span>Student Name</span>
                 <input type="text" name="student_name" id="student_name" placeholder="Student Name">
             </div>
-            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-4">
+            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-3">
                 <span>Student Grade</span>
                 <input type="text" name="student_grade" id="student_grade" placeholder="Student Grade (0-100)">
             </div>
-            <div class="display student_course col-xs-6 col-xs-offset-2 col-sm-6 col-md-4">
+            <div class="display student_course col-xs-6 col-xs-offset-2 col-sm-6 col-md-3">
                 <span>Student Course</span>
                 <input type="text" name="student_course" id="student_course" placeholder="Student Course ">
             </div>
-            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-4">
+            <div class="display col-xs-6 col-xs-offset-2 col-sm-6 col-md-3">
                 <span id="grade_average">Average</span>
                 <input id="student_display" placeholder="average" readonly>
             </div>
-            <button type="button" id='add_btn' class="s_add col-lg-2 col-md-2 col-md-offset-1 col-xs-6 col-sm-4">Add Student</button>
-            <button id="update" type="button" class="col-md-2 col-md-2 col-md-offset-1 col-xs-6  col-sm-4">Show All Students</button>
-            <button id="sort_name" type="button" class="col-md-2 col-md-1 col-md-offset-1 col-xs-6  col-sm-4">Sort by Name</button>
+            <div class="col-md-12 buttons">
+            <button type="button" id='add_btn' class="s_add col-lg-2 col-md-2 col-md-offset-3 col-xs-6 col-sm-4">Add Student</button>
+            <button id="update" type="button" class="col-lg-2 col-md-2 col-md-offset-1 col-xs-6  col-sm-4">Show All Students</button>
+            </div>
+            <div class="col-md-12 sort">
+            <button id="sort_name" type="button" class="col-md-2 col-md-1 col-md-offset-4 col-xs-6  col-sm-4">Sort by Name</button>
             <button id="sort_grade" type="button" class="col-md-2 col-md-1 col-xs-6  col-sm-4">Sort by Grade </button>
             <button id="sort_course" type="button" class="col-md-2 col-md-1 col-xs-6  col-sm-4">Sort by Course</button>
+            </div>
             <!--
             <button id="sort_name_r" type="button" class="col-md-2 col-xs-2 col-sm-2">Sort by Name a &#8594; z</button>
             <button id="sort_grade_r" type="button" class="col-md-2 col-xs-2 col-sm-2">Sort by Grade 0 &#8594; 100</button>

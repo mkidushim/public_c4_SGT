@@ -153,8 +153,8 @@ function highlight_high() {
 }
 
 function footer() {
-    $('.footer').append('<p class="col-sm-3 col-md-3 col-md-offset-2 pink">Pink = Highest Grade in the class.</p>')
-        .append('<p class="col-sm-3 col-md-3 col-md-offset-2 blue">Blue = Lowest Grade in the class.</p>')
+    $('.footer').append('<p class="col-sm-3 col-md-3 col-md-offset-2 text-center pink">Pink = Highest Grade in the class.</p>')
+        .append('<p class="col-sm-3 col-md-3 col-md-offset-1 text-center blue">Blue = Lowest Grade in the class.</p>')
 }
 
 
