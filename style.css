@@ -8,7 +8,7 @@
     opacity: .5;
 }
 #student_grade {
-    width: 46%;
+    width: 63%;
 }
 
 
@@ -20,23 +20,8 @@
     width: 65%;
    
 }
-
 .course_container {
     position: relative;
-}
-
-@media screen and (max-width: 600px) {
-    .list_group {
-        position: absolute;
-        top: 100%;
-        z-index: 1;
-        border: 1px solid;
-        box-shadow: 10px 10px 5px #888888;
-        padding-right: 5%;
-    }
-    .display {
-        margin-bottom: 10px;
-    }
 }
 
 .list_group {
@@ -70,6 +55,7 @@ li.list_item:hover {
 
 .footer {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pink {

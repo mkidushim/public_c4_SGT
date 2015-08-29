@@ -14,6 +14,7 @@ var data_inputed = true;
 var course_resp = $('#student_course').val();
 var course_array = [];
 var keyup_first = true;
+var list_shown = false;
 
 //^^^^ Variables ^^^^
 function add_student() {
@@ -251,6 +252,7 @@ function get_server() {
         crossDomain: true,
         url: 'http://s-apis.learningfuze.com/sgt/courses',
         success: function(response) {
+            list_shown = true;
             course_array = [];
             var div = $('<div>', {
                 class: "course_container",
@@ -259,7 +261,7 @@ function get_server() {
                 class: 'list_group text-left'
             });
             course_resp = $('#student_course').val();
-            console.log('get_server():', response.data[0].course)
+            console.log('get_server():', response.data)
             console.log('input', course_resp.length)
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].course.substr(0, course_resp.length) == course_resp) {
@@ -372,10 +374,12 @@ $(document).ready(function() {
         if (event.which === 8) {
             $('.course_container').remove();
             console.log("Key: " + event.which);
+            list_shown = false;
             return
         } else {
+            if(list_shown == false){
             get_server();
-
+            }
         }
     });
 
