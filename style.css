@@ -48,7 +48,9 @@ li.list_item:hover {
     color: black;
     background-color: white;
 }
-
+#sort_name, #sort_grade, #sort_course{
+    height: 45px;
+}
 .footer {
     margin-top: 20px;
     margin-bottom: 20px;
